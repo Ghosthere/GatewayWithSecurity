@@ -1,0 +1,17 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: ldap
+          predicates:
+            - Path=/user/**
+          uri: lb://bff-service
+        - id: bff
+          predicates:
+            - Path=/bff/**
+          uri: lb://bff-service
+  application:
+    name: gateway-service
+
+server:
+  port: 8081
